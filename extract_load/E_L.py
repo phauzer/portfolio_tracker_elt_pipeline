@@ -46,7 +46,7 @@ def googlesheet_to_gbq(conf: dict) -> None:
     worksheet.batch_clear(["A2:D1000"])
 
 
-def gbq_get_tickers(conf: dict) -> pd.DataFrame:
+def gbq_get_tickers(conf: dict) -> list:
 
     sql = f"""
     WITH ticker_total AS
@@ -68,13 +68,15 @@ def gbq_get_tickers(conf: dict) -> pd.DataFrame:
         sql, project_id=conf["project"], credentials=conf["credentials"]
     )
 
+    df_tickers = df_tickers["Ticker"].to_list()
+
     return df_tickers
 
 
-def api_get_asset_price(asset_tickers: pd.DataFrame, conf: dict) -> pd.DataFrame:
+def api_get_asset_price(asset_tickers: list, conf: dict) -> pd.DataFrame:
 
     price_list = []
-    for ticker in asset_tickers["Ticker"]:
+    for ticker in asset_tickers:
 
         headers = {
             "Content-Type": "application/json",
@@ -96,3 +98,5 @@ def api_get_asset_price(asset_tickers: pd.DataFrame, conf: dict) -> pd.DataFrame
 
 if __name__ == "__main__":
     conf = get_conf()
+    tickers = gbq_get_tickers(conf)
+    print(api_get_asset_price(tickers, conf))
