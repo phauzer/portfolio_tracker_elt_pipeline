@@ -1,7 +1,7 @@
 WITH staging AS 
 (
 SELECT
-    CAST(dates as DATE) as dates, 
+    CAST(dates AS DATE) AS date, 
     currency_code,
     rate
 FROM 
