@@ -13,7 +13,7 @@ date_limits AS
 (
     SELECT
         MIN(date) AS min_date,
-        MAX(date) AS max_date
+        current_date() as max_date
     FROM 
         {{ref('stg_transactions')}}
 ),
