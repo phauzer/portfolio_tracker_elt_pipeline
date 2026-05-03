@@ -1,0 +1,118 @@
+models:
+  - name: fact_transactions
+    columns:
+    - name: transaction_id
+      data_tests:
+      - not_null
+      - unique
+    - name: date_id
+      data_tests:
+      - not_null
+      - relationships:
+          arguments:
+            to: ref('dim_date')
+            field: date_id
+    - name: ticker_id
+      data_tests:
+      - not_null
+      - relationships:
+          arguments:
+            to: ref('dim_assets')
+            field: ticker_id
+    - name: trade_price
+      data_tests:
+      - not_null
+    - name: amount
+      data_tests:
+      - not_null
+
+  - name: fact_currency_exchange_rate
+    columns:
+    - name: currency_rate_id
+      data_tests:
+      - not_null
+      - unique
+    - name: date_id
+      data_tests:
+      - not_null
+      - relationships:
+          arguments:
+            to: ref('dim_date')
+            field: date_id
+    - name: currency_code
+      data_tests:
+      - not_null
+      - relationships:
+          arguments:
+            to: ref('dim_assets')
+            field: currency_code
+    - name: currency_rate
+
+  - name: fact_asset_prices
+    columns:
+    - name: asset_price_id
+      data_tests:
+      - not_null
+      - unique
+    - name: date_id
+      data_tests:
+      - not_null
+      - relationships:
+          arguments:
+            to: ref('dim_date')
+            field: date_id
+    - name: ticker_id
+      data_tests:
+      - not_null
+      - relationships:
+          arguments:
+            to: ref('dim_assets')
+            field: ticker_id
+    - name: asset_price
+
+  - name: dim_assets
+    columns:
+    - name: ticker_id
+      data_tests:
+      - not_null
+      - unique
+    - name: ticker
+      data_tests:
+      - not_null
+    - name: asset_name
+      data_tests:
+      - not_null
+    - name: exchange_code
+      data_tests:
+      - not_null
+    - name: currency_code
+      data_tests:
+      - not_null
+    
+  - name: dim_date
+    columns:
+    - name: date_id
+      data_tests:
+      - not_null
+      - unique
+    - name: date
+      data_tests:
+      - not_null
+      - unique
+    - name: date_year
+      data_tests:
+      - not_null
+    - name: date_month
+      data_tests:
+      - not_null
+    - name: date_month_name
+      data_tests:
+      - not_null
+    - name: date_day
+      data_tests:
+      - not_null
+    - name: date_weekday
+      data_tests:
+      - not_null
+
+
