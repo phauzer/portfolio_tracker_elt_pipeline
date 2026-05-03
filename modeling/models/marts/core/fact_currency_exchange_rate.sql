@@ -5,7 +5,7 @@ WITH currency_rates AS
         currency_code,
         rate AS currency_rate
     FROM
-        {{ref('stg_currency_exchange_price')}}
+        {{ref('stg_currency_exchange_rate')}}
 ),
 
 all_dates AS
