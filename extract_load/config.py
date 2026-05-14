@@ -8,7 +8,7 @@ root_log.setLevel(logging.INFO)
 formatting = logging.Formatter(
     "%(asctime)s-%(levelname)s-%(name)s-%(funcName)s-%(message)s"
 )
-file = logging.FileHandler("data_extract_load.log")
+file = logging.FileHandler("python_logs/data_extract_load.log")
 file.setFormatter(formatting)
 root_log.addHandler(file)
 
