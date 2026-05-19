@@ -11,14 +11,10 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
-seeds:
-  modeling:
-    +schema: raw
-
 models:
   modeling:
     +static_analysis: strict
     staging:
       +materialized: view
     marts:
-      +materialized: table 
+      +materialized: table
