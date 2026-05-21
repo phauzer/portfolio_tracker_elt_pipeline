@@ -1,6 +1,6 @@
 FROM xemuliam/dbt:fusion
 
-COPY ./* /modeling/
+COPY . /modeling/
 
 WORKDIR /modeling/
 
