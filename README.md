@@ -164,10 +164,10 @@ Open the .envEXAMPLE file, write your environment variables according to the ins
 Paste the Google Cloud Platform service key for the project into the gcp_keyEXAMPLE.json file or replace the file. Delete the .EXAMPLE from the file name.
 
 4. **Make Google Sheets for transactions** <br>
-Rename your Google Sheets spreadsheet to "portfolio_transactions" and rename the worksheet to "Transactions" and share this sheet with your GCP service account e-mail. <br>
-Paste the transactions from example_transactions.EXAMPLE.xlsx into the worksheet.
+* Rename your Google Sheets spreadsheet to "portfolio_transactions" and rename the worksheet to "Transactions" and share this sheet with your GCP service account e-mail.
+* Paste the transactions from transactions.EXAMPLE.xlsx into the worksheet or write your own transactions following the transactions.EXAMPLE.xlsx formatting(note: use tickers that are available in the Tiingo API).
 
-6. **Build the images**
+5. **Build the images**
 ```bash
 docker compose --profile portfolio_pipeline build
 ```
@@ -186,4 +186,4 @@ docker compose --profile portfolio_pipeline build
         ```
 7. Visualization <br>
 * You can explore the .pbix file in the repository with the original data.
-* If you want to refresh it with your own data connect your Google BigQuery.
+* If you want to refresh it with your own data connect to your Google BigQuery.
