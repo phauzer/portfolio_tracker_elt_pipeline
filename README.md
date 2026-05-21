@@ -148,6 +148,7 @@ scheduled running.
 * A GCP project with a BigQuery dataset.
 * A GCP Service account .json key with admin privileges.
 * API token for **Tiingo**
+* An empty Google Sheets spreadsheet.
 
 ### Setup
 1. **Clone the repository**
@@ -163,8 +164,8 @@ Open the .envEXAMPLE file, write your environment variables according to the ins
 Paste the Google Cloud Platform service key for the project into the gcp_keyEXAMPLE.json file or replace the file. Delete the .EXAMPLE from the file name.
 
 4. **Make Google Sheets for transactions** <br>
-Make a Google Sheet, name it "portfolio_transactions.EXAMPLE.xlsx" and rename the worksheet to "Transactions" and share this sheet with your GCP service account e-mail. <br>
-Paste the transactions from example_transactions into the Google Sheet.
+Rename your Google Sheets spreadsheet to "portfolio_transactions" and rename the worksheet to "Transactions" and share this sheet with your GCP service account e-mail. <br>
+Paste the transactions from example_transactions.EXAMPLE.xlsx into the worksheet.
 
 6. **Build the images**
 ```bash
