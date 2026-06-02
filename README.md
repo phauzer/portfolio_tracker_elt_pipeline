@@ -1,4 +1,4 @@
-# Portfolio Tracker Pipeline
+# Cloud-Based Portfolio Tracker Pipeline
 Automated end-to-end ELT data pipeline for tracking an EUR based portfolio value, separating asset and FX yield and insights over time.
 
 ## Business problem
@@ -16,7 +16,7 @@ Tracking an investment portfolio manually without insights can be troublesome an
 * **Extraction and Loading**: Python -> Pandas, Pandas_gbq, requests, comprehensive logging and error-handling
 * **Data Warehouse**: Google BigQuery -> Cloud based DWH
 * **Transformation and Modeling**: dbt -> Making Star Schema, jinja, data quality tests, data documentation
-* **Containerization**: Docker -> Separating Extraction-Load, Modeling and Airflow into Docker containers
+* **Containerization**: Docker and Docker -> Separating Extraction-Load, Modeling and Airflow into Docker containers
 * **Orchestration**: Apache Airflow -> Orchestrating the Docker containers to run the pipeline, PostgreSQL backend
 * **Visualization**: Power BI -> Dax measures, bookmarks
 
@@ -115,7 +115,7 @@ This Star Schema is the gold level of the **Medallion Structure**. It gets build
 The main.py starts the process. The new transactions from the **Google Sheets** get extracted and loaded into **BigQuery**. Only after that will the asset price and FX rate fetching begin. First it fetches the active asset tickers and currencies from BigQuery, only these prices will be fetched from the APIs for **optimization**.
 
 2. **Data Loading** <br>
-Every table gets loaded into **Google BigQuery** as **raw tables** for future modeling.  If the transaction loading was successfu the Google Sheets transactions gets cleared  to maintain **idempotency**.
+Every table gets loaded into **Google BigQuery** as **raw tables** for future modeling. If the transaction loading was successful the Google Sheets transactions gets cleared to maintain **idempotency**.
 
 3. **Data Modeling** <br>
 The staging level is materialized as views so it refreshes instantly. The core **Star Schema** contains **forward filling** for asset prices and FX rates to fill the days where there were no data for it with the **last known price**. 
