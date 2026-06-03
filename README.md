@@ -139,7 +139,7 @@ scheduled running.
 
 ## Visualization
 
-<img width="720" height="405" alt="portfolio_visualizationv2" src="https://github.com/user-attachments/assets/2e07e41b-f048-4e74-820c-a4fceadbe078" />
+<img width="720" height="405" alt="Képernyőkép 2026-06-03 123355" src="https://github.com/user-attachments/assets/19f2428e-1a95-40c5-ba9e-55f877cb30cb" />
 
 # How to Run
 
