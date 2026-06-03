@@ -15,16 +15,16 @@ Tracking an investment portfolio manually without insights can be troublesome an
 * **Data Sources**: Google Sheets API (gspread), Tiingo API, Frankfurter API
 * **Extraction and Loading**: Python -> Pandas, Pandas_gbq, requests, comprehensive logging and error-handling
 * **Data Warehouse**: Google BigQuery -> Cloud based DWH
-* **Transformation and Modeling**: dbt -> Making Star Schema, jinja, data quality tests, data documentation
+* **Transformation and Modeling**: dbt -> Making Star Schema, Jinja, data quality tests, data documentation
 * **Containerization**: Docker and Docker -> Separating Extraction-Load, Modeling and Airflow into Docker containers
 * **Orchestration**: Apache Airflow -> Orchestrating the Docker containers to run the pipeline, PostgreSQL backend
-* **Visualization**: Power BI -> Dax measures, bookmarks
+* **Visualization**: Power BI -> DAX measures, bookmarks
 
 ## Data Model
 
 <img width="720" height="405" alt="investment_portfolio" src="https://github.com/user-attachments/assets/b6768d79-8544-4795-af10-3ae85741119c" />
 
-This Star Schema is the gold level of the **Medallion Structure**. It gets build from the staging tables which is the silver level. The analytics layer is built from this core schema. <br>
+This Star Schema is the gold level of the **Medallion Structure**. It gets built from the staging tables which are the silver level. The analytics layer is built from this core schema. <br>
 **Explore the interactive dbt Documentation and Data Lineage [CLICK HERE](https://peti0505.github.io/portfolio_tracker_elt_pipeline/)**
 
 ## Project Structure
@@ -38,7 +38,7 @@ This Star Schema is the gold level of the **Medallion Structure**. It gets build
 │   docker-compose.yml
 │   gcp_key.EXAMPLE.json
 │   portfolio_transactions.EXAMPLE.xlsx
-│   portoflio_visualization.pbix
+│   portfolio_visualization.pbix
 │   profiles.yml
 │   README.md
 │   
@@ -115,10 +115,10 @@ This Star Schema is the gold level of the **Medallion Structure**. It gets build
 The main.py starts the process. The new transactions from the **Google Sheets** get extracted and loaded into **BigQuery**. Only after that will the asset price and FX rate fetching begin. First it fetches the active asset tickers and currencies from BigQuery, only these prices will be fetched from the APIs for **optimization**.
 
 2. **Data Loading** <br>
-Every table gets loaded into **Google BigQuery** as **raw tables** for future modeling. If the transaction loading was successful the Google Sheets transactions gets cleared to maintain **idempotency**.
+Every table gets loaded into **Google BigQuery** as **raw tables** for future modeling. If the transaction loading was successful the Google Sheets transactions get cleared to maintain **idempotency**.
 
 3. **Data Modeling** <br>
-The staging level is materialized as views so it refreshes instantly. The core **Star Schema** contains **forward filling** for asset prices and FX rates to fill the days where there were no data for it with the **last known price**. 
+The staging level is materialized as views so it refreshes instantly. The core **Star Schema** contains **forward filling** for asset prices and FX rates to fill the days where there was no data for it with the **last known price**. 
 
 4. **Data testing** <br>
 Data quality tests are being done on every stage of the data in BigQuery. **Generic and singular tests** as well with the help of dbt. This assures that there **won't be any false information downstream**.
@@ -132,7 +132,7 @@ The visualization contains the following insights: <br>
 
 6. **Orchestration** <br>
 The Airflow gets all the environment variables and the Google Cloud Platform service key to pass on to the containers. The Airflow runs in a container as well, it executes the DAG using the host **Docker Socket**. <br>
-If needed the pipeline can be started with the docker-compose aswell, but only the Airflow has 
+If needed the pipeline can be started with Docker Compose as well, but only the Airflow has 
 scheduled running.
 
 **Note: The portfolio contains fictional transactions, it doesn't resemble a real portfolio.**
@@ -165,7 +165,7 @@ Paste the Google Cloud Platform service key for the project into the gcp_keyEXAM
 
 4. **Make Google Sheets for transactions** <br>
 * Rename your Google Sheets spreadsheet to "portfolio_transactions" and rename the worksheet to "Transactions" and share this sheet with your GCP service account e-mail.
-* Paste the transactions from portfolio_transactions.EXAMPLE.xlsx into the worksheet or write your own transactions following the portfolio_transactions.EXAMPLE.xlsx formatting(note: use tickers that are available in the Tiingo API).
+* Paste the transactions from portfolio_transactions.EXAMPLE.xlsx into the worksheet or write your own transactions following the portfolio_transactions.EXAMPLE.xlsx formatting (note: use tickers that are available in the Tiingo API).
 
 5. **Build the images**
 ```bash
@@ -178,7 +178,7 @@ docker compose --profile portfolio_pipeline build
         ```
     - Navigate to http://localhost:8080 in your browser.
     - Log in to Airflow (default credentials: airflow airflow)
-    - Unpause or trigger the dag to execute the pipeline
+    - Unpause or trigger the DAG to execute the pipeline
 
 * If you want to start it with Docker Compose without scheduling:
     - ```bash
@@ -186,4 +186,4 @@ docker compose --profile portfolio_pipeline build
         ```
 7. Visualization <br>
 * You can explore the .pbix file in the repository with the original data.
-* If you want to refresh it with your own data connect to your Google BigQuery.
+* If you want to refresh it with your own data, connect to your Google BigQuery.
