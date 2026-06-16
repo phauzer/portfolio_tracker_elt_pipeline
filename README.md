@@ -153,7 +153,7 @@ scheduled running.
 ### Setup
 1. **Clone the repository**
 ```bash
-   git clone https://github.com/peti0505/portfolio_tracker_elt_pipeline.git
+   git clone https://github.com/phauzer/portfolio_tracker_elt_pipeline.git
    cd portfolio_tracker_elt_pipeline
 ```
 
