@@ -16,7 +16,7 @@ Tracking an investment portfolio manually without insights can be troublesome an
 * **Extraction and Loading**: Python -> Pandas, Pandas_gbq, requests, comprehensive logging and error-handling
 * **Data Warehouse**: Google BigQuery -> Cloud based DWH
 * **Transformation and Modeling**: dbt -> Making Star Schema, Jinja, data quality tests, data documentation
-* **Containerization**: Docker and Docker -> Separating Extraction-Load, Modeling and Airflow into Docker containers
+* **Containerization**: Docker and Docker Compose -> Separating Extraction-Load, Modeling and Airflow into Docker containers
 * **Orchestration**: Apache Airflow -> Orchestrating the Docker containers to run the pipeline, PostgreSQL backend
 * **Visualization**: Power BI -> DAX measures, bookmarks
 
