@@ -204,13 +204,17 @@ def api_get_asset_metadata(asset_tickers: list, conf: dict) -> pd.DataFrame:
             )
 
             r = response.json()
-            metadata = {
-                "tickers": ticker,
-                "asset_name": r["name"],
-                "exchange_code": r["exchangeCode"],
-            }
-            metadata_list.append(metadata)
-
+            if r:
+                metadata = {
+                    "tickers": ticker,
+                    "asset_name": r["name"],
+                    "exchange_code": r["exchangeCode"],
+                }
+                metadata_list.append(metadata)
+            
+            else:
+                logger.warning(f"{ticker} metadata was not found by Tiingo API.")
+            
         df_metadata = pd.DataFrame(metadata_list)
 
     except:
@@ -253,12 +257,16 @@ def api_get_asset_price(asset_tickers: list, conf: dict) -> pd.DataFrame:
             )
 
             r = response.json()
-            price = {
-                "dates": r[0]["date"],
-                "tickers": ticker,
-                "price": r[0]["adjClose"],
-            }
-            price_list.append(price)
+            if r:
+                price = {
+                    "dates": r[0]["date"],
+                    "tickers": ticker,
+                    "price": r[0]["adjClose"],
+                }
+                price_list.append(price)
+            
+            else:
+                logger.warning(f"{ticker} price was not found by Tiingo API.")
 
         df_prices = pd.DataFrame(price_list)
 
