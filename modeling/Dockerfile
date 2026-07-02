@@ -1,4 +1,4 @@
-FROM xemuliam/dbt:fusion
+FROM xemuliam/dbt:2.0.0-preview.178-fusion
 
 COPY . /modeling/
 
