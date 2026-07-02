@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: portfolio
-    database: "{{ env_var('project_id', 'investment-portfolio-tracker-1') }}"
-    schema: "{{ env_var('dataset_name', 'dev') }}"
+    database: "{{ env_var('project_id') }}"
+    schema: "{{ env_var('dataset_name') }}"
     description: Data for the investment portfolio.
     tables:
 
