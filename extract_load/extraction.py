@@ -204,7 +204,7 @@ def api_get_asset_metadata(asset_tickers: list, conf: dict) -> pd.DataFrame:
             )
 
             r = response.json()
-            if r:
+            if r["name"] and r["exchangeCode"]:
                 metadata = {
                     "tickers": ticker,
                     "asset_name": r["name"],
