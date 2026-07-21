@@ -8,7 +8,7 @@ Tracking an investment portfolio manually without insights can be troublesome an
 
 ## Architecture and Dataflow
 
-<img width="932" height="405" alt="portfolio_tracking" src="https://github.com/user-attachments/assets/b3a6f08a-15ce-478f-a224-b56731bb1c53" />
+<img width="789" height="405" alt="portolfio_elt_project" src="https://github.com/user-attachments/assets/500c9f01-28cb-4e78-a035-e79c2de72154" />
 
 ## Tech Stack
 
