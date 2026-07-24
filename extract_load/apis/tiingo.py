@@ -1,4 +1,4 @@
-from interfaces import ApiPriceFetcher
+from apis.interfaces import ApiPriceFetcher
 import requests
 from os import environ
 from logging import getLogger

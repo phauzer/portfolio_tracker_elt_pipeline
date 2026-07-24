@@ -115,10 +115,3 @@ class GoogleSheetApi:
             logger.info(
                 "Couldn't clear the sheet, data were not yet archived"
             )
-
-gs = GoogleSheetApi()
-data = gs.extract()
-gs.make_worksheet("archived", 10000, 5)
-gs.append_data("archived", data)
-gs.sheet_cleanup("A2", "E1000")
-
