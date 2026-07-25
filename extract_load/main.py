@@ -1,4 +1,7 @@
 from logging import getLogger
+from dotenv import load_dotenv
+load_dotenv()
+
 from pipeline import Pipeline
 
 logger = getLogger(__name__)
